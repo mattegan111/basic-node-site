@@ -14,12 +14,8 @@ app.get('/contact-me', async (request, response) => {
     response.send( await readFile('./contact-me.html', 'utf8') );
 });
 
-app.get('/404', async (request, response) => {
-    response.send( await readFile('./404.html', 'utf8') );
-});
-
-app.use(function (request, response) {
-    response.status(404).send( await readFile('./404.html', 'utf8') );
+app.use( async (request, response) => {
+    response.status(404).send( await readFile('./404.html', 'utf8'));
 });
 
 app.listen(process.env.PORT || 3000, () => console.log(`App available on http://localhost:3000`));
